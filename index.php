@@ -5,3 +5,4 @@ $nomenklCommon = new Class_Reference_Nomenclature_Common();
 //echo $nomenklCommon->insert(array('name' => 'Вася', 'full_name' => 'Вася Пупкин'));
 $nomenklCommon->select(array('name', 'full_name'), array('name'=>'id', 'value' => 1, 'sign' => '>'));
   echo $nomenklCommon->getSQL();
+echo ('mkhyuf,korukorf,lo');
