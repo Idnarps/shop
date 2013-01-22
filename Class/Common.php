@@ -73,7 +73,16 @@ class Class_Common {
                   ' FROM ' . $this->_tblName . ' AS ' . $this->_tblAlias .
                   $this->_addLeftJoin($leftJoin) . $this->_dataForWhere($where);
     // Преобразуем входные данные для where для привязки значений к PDOStatment
-
+    try{
+      $stm = $this->_db->prepare($this->_sql);
+      $this->_bindArrayValue($stm, $this->_prepareForBind($where));
+      $stm->execute();
+      return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
   }
 
   /**
@@ -208,10 +217,19 @@ class Class_Common {
   }
 
   /**
-   * @param $array
+   * Метод для перобразования м
+   * @param $array массив который приходит для выражения where
    */
   private function _prepareForBind($array) {
-
+    $return = array();
+    if ($array[0]) {
+      foreach ($array as $val) {
+        $return[$val['name']] = $val['value'];
+      }
+    } else {
+      $return[$array['name']] = $array['value'];
+    }
+    return $return;
   }
 
   /**
