@@ -71,7 +71,7 @@ class Class_Common {
     $this->_initDefaults();
     $this->_sql = 'SELECT ' . ($distinct ? 'DISTINCT' : '') . $this->_fromFields($fields) .
                   ' FROM ' . $this->_tblName . ' AS ' . $this->_tblAlias .
-                  $this->_addLeftJoin($leftJoin) . $this->_dataForWhere($where);
+                  $this->_addLeftJoin($leftJoin) . ' WHERE ' .$this->_dataForWhere($where);
     // Преобразуем входные данные для where для привязки значений к PDOStatment
     try{
       $stm = $this->_db->prepare($this->_sql);
