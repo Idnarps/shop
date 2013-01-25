@@ -1,6 +1,6 @@
 <?php
 /**
- * Êëàññ äëÿ ðàáîòû ñ êîíòðàãåíòàìè
+ * ÐšÐ»Ð°ÑÑ Ð´Ð»Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ ÐºÐ¾Ð½Ñ‚Ñ€Ð°Ð³ÐµÐ½Ñ‚Ð°Ð¼Ð¸
  * User: ScvortsovAV
  * Date: 25.01.13
  */
@@ -8,8 +8,7 @@
 class Class_Reference_Contractor_Common extends Class_Common {
 
   public function __construct(){
-    parent::__construct();
-    $this->_tblName = 'ref_contractor';
+    parent::__construct('ref_contractor');
     $this->_objName = 'Class_Contractor_Common';
   }
 
