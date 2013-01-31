@@ -7,8 +7,7 @@
 class Class_Reference_Nomenclature_Common extends Class_Common {
 
   public function __construct(){
-    parent::__construct();
-    $this->_tblName = 'ref_nomenclature';
+    parent::__construct('ref_nomenclature');
     $this->_objName = 'Class_Nomenclature_Common';
   }
 

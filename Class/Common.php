@@ -94,6 +94,44 @@ class Class_Common {
   }
 
   /**
+  * @param array $fields Ассоциативный массив с полями для выборки
+  *                      Вид: array([] => 'алиас.поле', [tblAlias] => 'алиас.поле'), для таблицы класса и без join алиас можно не указывать
+  * @param array $where Ассоциативный массив или массив ассоциативных массивов с данными для выборки
+  *                      Вид: array('name' => значение,
+  *                                 'value' => '',
+  *                                 'sign' => 'знак сравнения'(необязательное поле),
+  *                                 'alias' => 'алиас для таблицы поля'(необязательное поле))
+  * @param array|bool $leftJoin Массив со строками left join
+  *                             Вид: array([] => 'ref_nomenclature AS rn ON rn.id=z.ref_nomenclature_id')
+  * @param array $params Массив с дополнительными параметрами запроса
+  *                      Вид: array([distinct] => 1|0,
+  *                                 [order] => 'название поля|полей с алисами таблицы',
+  *                                 [limit] => 'будет заменено на "0,1"')
+  * @return array|bool Результат запроса к БД
+  */
+  public function selectOne ($fields, $where, $leftJoin = false, $params = array()) {
+    $params['limit'] = '0,1';
+    $result = $this->select($fields, $where, $leftJoin, $params);
+    return $result[0];
+  }
+
+  /**
+   * Метод для поиска данных из таблицы по уникальному ключу
+   * @param integer $id Id записи
+   * @param array $fields Поля, которые необходимо вывести
+   * @return array|bool Массив запрашиваемых данных или ошибка при некорректных данных
+   */
+  public function selectById ($id, $fields = array()) {
+    $this->_sql = 'SELECT ' . $this->_fromFields($fields) .
+                  ' FROM ' . $this->_tblName . ' AS ' . $this->_tblAlias .
+                  'WHERE ' . $this->_idColumn . '=:id';
+    $stm = $this->_db->prepare($this->_sql);
+    $this->_bindArrayValue($stm, array('id' => $id));
+    $stm->execute();
+    return $stm->fetch(PDO::FETCH_ASSOC);
+  }
+
+  /**
    * @param $data Массив с данными для вставки в таблицу.
    *              Вид: array('название поля в таблице' => 'значение',
    *                         'название поля в таблице' => 'значение',
