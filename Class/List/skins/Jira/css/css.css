@@ -1,0 +1,100 @@
+tr{cursor:pointer;}
+table.List
+{
+	
+}
+
+table.List th
+{
+	font:bold 12px arial;
+  	color:#000000;
+	height:23px;
+ 	border-top:1px solid #7c7c7c;
+ 	border-bottom:1px solid #7c7c7c;
+	border-left:1px solid #7c7c7c;
+    background-color:#e2e2e2;
+    padding-left:4px;
+    padding-right:4px;
+	text-align:left;
+}
+table.List th.selected,table.List th:hover
+{
+	font:bold 12px arial;
+  	color:#ffffff;
+    background-color:#aaaaaa;
+}
+
+
+table.List th a
+{
+	font:bold 12px Tahoma;
+	color:#000000;
+	text-decoration:none;
+
+}
+table.List th.selected a,table.List th:hover a
+{
+	font:bold 12px Tahoma;
+	color:#ffffff;
+	text-decoration:none;
+}
+
+
+table.List td
+{
+	font:normal 12px Tahoma;
+  	/*color:#003366;*/
+	border-bottom:1px solid #7c7c7c;
+	border-left:1px solid #7c7c7c;
+	height:23px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+table.List td a
+{
+	font:12px Tahoma;
+	color:#000000;
+
+}
+
+table.List td.totals
+{
+	font:bold 12px Tahoma;
+  	color:#000000;
+	height:23px;
+ 	border-bottom:1px solid #7c7c7c;
+	border-left:1px solid #7c7c7c;
+    background-color:#e2e2e2;
+    padding-left:4px;
+    padding-right:4px;
+	text-align:left;
+}
+
+table.List tr.list1{
+/*	BACKGROUND-COLOR: white;*/
+}
+/*
+table.List tr.list1:hover{
+	BACKGROUND-COLOR: #e5ebf3;
+}
+*/
+table.List tr.list2{
+	BACKGROUND-IMAGE: URL('/class/List/skins/Jira/images/amp_bg.png');	
+}
+/*
+table.List tr.list2:hover{
+	BACKGROUND-COLOR: #e5ebf3;
+}
+*/
+.txt1
+{
+	font:normal 12px Tahoma;
+	color:#000000;
+}
+
+a.pages,a:active.pages,a:visited.pages{font:normal 12px Tahoma;color:#003366;text-decoration:none;}
+a:hover.pages{color:#336699;text-decoration:underline;}
+
+a.curPage,a:active.curPage,a:visited.curPage{font:bold 12px Tahoma;color:#000000;text-decoration:none;border:1px solid #000000;padding:1px;}
+a:hover.curPage{color:#000000;text-decoration:underline;}

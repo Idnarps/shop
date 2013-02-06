@@ -33,7 +33,7 @@ class Class_Authorization {
     $result['error'] = $this->_isUser();
     if (!(false === $result['error'])) {
       // Если возникла, какая либо ошибка или страницу логина выводим впервые, то отображаем HTML-страницу
-        $result['loginPage'] = Class_Config::templateRender('login.html', array('error' => $result['error']));
+      $result['loginPage'] = Class_Config::templateRender('login.html', array('error' => $result['error']));
     }
     return $result;
   }

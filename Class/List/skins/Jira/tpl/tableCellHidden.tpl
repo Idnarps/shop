@@ -1,0 +1,1 @@
+<input type='hidden' id="cell_<?=$rowId?>_<?=$cellId?>" name='<?=$name?>' value='<?=$innerHTML?>'>

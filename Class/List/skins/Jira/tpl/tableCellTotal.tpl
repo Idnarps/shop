@@ -1,0 +1,1 @@
+<td class='totals' id="total_<?=$object[0]?>"><?=$innerHTML?></td>
