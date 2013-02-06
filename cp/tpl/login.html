@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      #wrapper{margin: auto auto;border-bottom:1px solid black;border-top:1px solid black;width:400px;}
+      table{width:400px;}
+      td{width:50%;text-align:left;}
+      .error{color:red;font-size:20px;font-weight:bold;padding:0px;margin:5px;}
+      .disp-n{display:none;}
+      .ta-c{text-align:center;}
+    </style>
+  </head>
+  <body>
+  <div id="wrapper">
+    <p id="error" class="error {% if not error %} disp-n {% endif %} ta-c">
+      {{ error }}
+    </p>
+    <form action="/cp/" id="login_form" method="post">
+      <table>
+        <tr>
+          <td>
+            Логин:
+          </td>
+          <td>
+            <input type="text" id="login" name="login" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Пароль:
+          </td>
+          <td>
+            <input type="text" id="pwd" name="pwd" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="ta-c">
+            <input type="button" id="submit_form" value="Войти" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#submit_form').click(
+        function() {
+          var login = $('#login').val().trim(),
+              pwd = $('#pwd').val().trim();
+          if (login && pwd) {
+            $('#login_form').submit();
+          } else {
+            $('#error').html('Введите логин/пароль.').show();
+          }
+        }
+      );
+    });
+  </script>
+  </body>
+</html>

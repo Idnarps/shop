@@ -298,8 +298,9 @@ class Class_Common {
     $return = '';
     if (is_array($data) && isset($data[0])) {
       foreach ($data as $val) {
-        $return .= ' ' . $this->_addWhereItem($val);
+        $return[] = $this->_addWhereItem($val);
       }
+      $return = implode(' AND ', $return);
     } else if (is_array($data)) {
       $return .= ' ' . $this->_addWhereItem($data);
     }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    {% block stuff %}
+    <link href="/css/general.css" rel="stylesheet" type="text/css" />
+    <link href="/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery.ui.theme.css" rel="stylesheet" type="text/css" >
+    {% endblock stuff %}
+    <title>{{ params.page_title }}</title>
+  </head>
+  <body>
+  {% block menu %}
+  {% include "menu.html" %}
+  {% endblock menu %}
+  <div id="content">
+    {% block main %}
+    {% endblock main %}
+  </div>
+  {% block js %}
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/js.js"></script>
+  {% endblock js %}
+  </body>
+</html>

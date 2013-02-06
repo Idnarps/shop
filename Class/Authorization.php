@@ -27,25 +27,37 @@ class Class_Authorization {
   }
 
   /**
-   * Метод для отображения
+   * Метод для отображения страницы логина и определения авторизованного пользователя
    */
   public function login() {
+    $result['error'] = $this->_isUser();
+    if (!(false === $result['error'])) {
+      // Если возникла, какая либо ошибка или страницу логина выводим впервые, то отображаем HTML-страницу
+        $result['loginPage'] = Class_Config::templateRender('login.html', array('error' => $result['error']));
+    }
+    return $result;
+  }
+
+  private function _isUser() {
     $userCommon = new Class_Reference_User_Common();
     $login = isset($_POST['login']) ? trim($_POST['login']) : '';
     $pwd = isset($_POST['pwd']) ? trim($_POST['pwd']) : '';
+    $error = '';
     if ($login && $pwd) {
-      $user = $userCommon->selectOne(array('id', 'name', 'surname', 'patronymic'), array('login' => $login,
-                                                                                         'password' => $pwd,
-                                                                                         'type' => 'admin'));
+      $user = $userCommon->selectOne(array('id', 'name', 'surname', 'patronymic'), array(array('name' => 'login', 'value' => $login),
+                                                                                         array('name' => 'password', 'value' => $pwd),
+                                                                                         array('name' => 'type', 'value' => 'admin')));
+      echo $userCommon->getSQL();
       $error = 'Пользователь с таким логином/паролем не найден!';
       if ($user) {
+        // Если нашли такого пользователя
         $this->isLogin = true;
         $_SESSION['cp_user_id'] = $user['id'];
         $_SESSION['full_name'] = $user['surname'] . ' ' . $user['name'] . ' ' . $user['patronymic'];
+        $error = false;
       }
-    } else {
-
     }
+    return $error;
   }
 
 }

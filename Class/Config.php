@@ -22,7 +22,7 @@ class Class_Config{
   static public $twig;
 
   // Служебные параметры для Twig
-  static private $_twigParams;
+  static private $_twigParams = array();
 
   // Инициализация основных параметров приложения
   static public function init() {
@@ -31,11 +31,18 @@ class Class_Config{
     self::$classFile = self::$workPath . $_GET['ty'] . '.php';
     session_start();
     // Инициализируем загрузчик
-    $loader = new Twig_Loader_Filesystem(array($_SERVER['DOCUMENT_ROOT'] . 'cp/tpl/', self::$workPath . 'tpl/'));
+    // Добавим пути, где могут лежать шаблоны
+    $tplPath[] = $_SERVER['DOCUMENT_ROOT'] . 'cp/tpl/';
+    $tplClass = self::$workPath . 'tpl/';
+    if (file_exists($tplClass)) {
+      $tplPath[] = $tplClass;
+    }
+    $loader = new Twig_Loader_Filesystem($tplPath);
     //Настроим Twig
     self::$twig = new Twig_Environment($loader);
     $escaper = new Twig_Extension_Escaper(false); //Загружаем расширение с настройкой, чтоб оно не экранировало всё попало
     self::$twig->addExtension($escaper);
+    self::$_twigParams['params']['page_title'] = 'fjkgjkdfhgjkdf';
     // Теперь определимся с пользователем
   }
 
