@@ -47,7 +47,7 @@ class Class_Authorization {
       $user = $userCommon->selectOne(array('id', 'name', 'surname', 'patronymic'), array(array('name' => 'login', 'value' => $login),
                                                                                          array('name' => 'password', 'value' => $pwd),
                                                                                          array('name' => 'type', 'value' => 'admin')));
-      echo $userCommon->getSQL();
+      //echo $userCommon->getSQL();
       $error = 'Пользователь с таким логином/паролем не найден!';
       if ($user) {
         // Если нашли такого пользователя

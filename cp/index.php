@@ -10,7 +10,7 @@
  * User: IdnarpS
  * Date: 25.01.13
  */
-require_once $_SERVER['DOCUMENT_ROOT'] . 'Twig/Autoloader.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Twig/Autoloader.php';
 Twig_Autoloader::register();
 Class_Config::init();
 if (!$_SESSION['cp_user_id']) {

@@ -508,7 +508,7 @@ class Class_List_Main {
 	$this->_rows = Array();
 	$this->_skin = $Skin;
 
-	$this->_tplDir = $_SERVER['DOCUMENT_ROOT']."/class/List/skins/{$this->_skin}/tpl/";
+	$this->_tplDir = $_SERVER['DOCUMENT_ROOT']."/Class/List/skins/{$this->_skin}/tpl/";
 	$this->_cssDir = "/Class/List/skins/{$this->_skin}/css/";
 	$this->_jsDir = "/Class/List/js/";
 	$this->_imgDir = "/Class/List/skins/{$this->_skin}/images/";
