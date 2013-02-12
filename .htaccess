@@ -2,6 +2,7 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_URI} /+[^\.]+$
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+RewriteRule ^amamba/ /cp/
 RewriteRule ^amamba/([a-zA-Z]+)/([a-zA-Z\_]+)/([a-zA-Z]+)/([a-zA-Z]+)/$ /cp/index.php?p=$1&cl=$2&ty=$3&act=$4 [L]
 RewriteRule ^image/([a-zA-Z\_]+)/([0-9]+)x([0-9]+)/([0-9\_]+).jpg$ /index.php?section=$1&width=$2&height=$3&name=$4&class=Image&act=thumb_img
 #RewriteRule ^css/(.*\.css) /combine.php?type=css&files=$1

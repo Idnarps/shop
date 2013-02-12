@@ -26,13 +26,13 @@ class Class_Config{
 
   // Инициализация основных параметров приложения
   static public function init() {
-    self::$workPath = $_SERVER['DOCUMENT_ROOT'] . 'Class/' . Class_Config::$types[$_GET['p']] . '/' . $_GET['cl'] . '/';
+    self::$workPath = $_SERVER['DOCUMENT_ROOT'] . '/Class/' . Class_Config::$types[$_GET['p']] . '/' . $_GET['cl'] . '/';
     self::$className = 'Class_' . Class_Config::$types[$_GET['p']] . '_' . $_GET['cl'] . '_' . $_GET['ty'];
     self::$classFile = self::$workPath . $_GET['ty'] . '.php';
     session_start();
     // Инициализируем загрузчик
     // Добавим пути, где могут лежать шаблоны
-    $tplPath[] = $_SERVER['DOCUMENT_ROOT'] . 'cp/tpl/';
+    $tplPath[] = $_SERVER['DOCUMENT_ROOT'] . '/cp/tpl/';
     $tplClass = self::$workPath . 'tpl/';
     if (file_exists($tplClass)) {
       $tplPath[] = $tplClass;
@@ -48,7 +48,7 @@ class Class_Config{
 
   static public function DB() {
     try{
-      return new PDO('mysql:host=localhost;dbname=cp', 'root', 'worktool', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "utf8"'));
+      return new PDO('mysql:host=localhost;dbname=shop', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "utf8"'));
     } catch (PDOException $e) {
       echo $e->getMessage();
       return false;
