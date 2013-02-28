@@ -42,7 +42,7 @@ class Class_Config{
     self::$twig = new Twig_Environment($loader);
     $escaper = new Twig_Extension_Escaper(false); //Загружаем расширение с настройкой, чтоб оно не экранировало всё попало
     self::$twig->addExtension($escaper);
-    self::$_twigParams['params']['page_title'] = 'fjkgjkdfhgjkdf';
+    self::ParseDopParams();
     // Теперь определимся с пользователем
   }
 
@@ -61,6 +61,26 @@ class Class_Config{
 
   static function templateRender($templateName, $params){
    return self::$twig->render($templateName, array_merge($params, self::$_twigParams));
+  }
+
+  /**
+   * Проверяем на существование дополнительных GET-переменных (они могут не попасть в $_GET после htaccess'а)
+   * @return void
+   */
+  static public function ParseDopParams() {
+    $dop_params = urldecode($_SERVER['REQUEST_URI']);
+    $dop_params = explode("?", $dop_params);
+    if($dop_params[1])
+    {
+      $dop_params = explode("&", $dop_params[1]);
+      foreach($dop_params as $value)
+      {
+        $value = explode("=",$value);
+        if (isset($value[1])) {
+          $_GET[$value[0]] = $value[1];
+        }
+      }
+    }
   }
 
 }
